@@ -84,7 +84,7 @@ def scatter(data,
         marker = marker_map
     plt.figure(figsize=figsize)
     plt.rcParams["font.sans-serif"] = "Times New Roman"
-    assert group is not None or group is None and series is None,\
+    assert group is not None or group is None and series is None, \
         "group must not None when series is not None."
     if group is None and series is None:
         plt.scatter(data[0],
@@ -116,12 +116,18 @@ def scatter(data,
                             alpha=alpha,
                             linewidths=0.5)
     if legend_names is not None:
-        plt.legend(legend_names,
-                   loc=loc,
-                   fontsize=legend_fontsize,
-                   labelspacing=0,
-                   handletextpad=0,
-                   markerscale=markerscale)
+        legend = plt.legend(legend_names,
+                            loc=loc,
+                            fontsize=legend_fontsize,
+                            labelspacing=0,
+                            handletextpad=0.2,
+                            handlelength=0.4,
+                            borderpad=0.2,
+                            markerscale=markerscale,
+                            fancybox=True,
+                            framealpha=0.5)
+        for lh in legend.legendHandles:
+            lh.set_alpha(alpha)
     if remove_axis:
         plt.axis('off')
     else:
