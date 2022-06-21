@@ -26,7 +26,7 @@ def get_requirements(filename="requirements.txt"):
 setup(name="sciplotlib",
       version=find_version(),
       description="SciPlotLib: A toolbox for drawing figures commonly "
-                  "found in journal or conference papers.",
+      "found in journal or conference papers.",
       author="MetaVisionLab",
       license="GUN",
       long_description=readme(),
