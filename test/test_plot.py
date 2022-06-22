@@ -35,9 +35,8 @@ class TestScatter(unittest.TestCase):
                      group_names=group_names,
                      save_path=os.path.join(sys.path[0], '../examples'),
                      save_name=f"{os.path.basename(__file__.split('.')[0])}."
-                               f"{self.__class__.__name__}."
-                               f"{inspect.currentframe().f_code.co_name}"
-                     )
+                     f"{self.__class__.__name__}."
+                     f"{inspect.currentframe().f_code.co_name}")
 
     def test_group(self):
         data = np.array([[], []], dtype=float)
@@ -55,9 +54,8 @@ class TestScatter(unittest.TestCase):
                      group_names=group_names,
                      save_path=os.path.join(sys.path[0], '../examples'),
                      save_name=f"{os.path.basename(__file__.split('.')[0])}."
-                               f"{self.__class__.__name__}."
-                               f"{inspect.currentframe().f_code.co_name}"
-                     )
+                     f"{self.__class__.__name__}."
+                     f"{inspect.currentframe().f_code.co_name}")
 
     def test_group_fix_marker(self):
         data = np.array([[], []], dtype=float)
@@ -76,9 +74,8 @@ class TestScatter(unittest.TestCase):
                      fix_marker=True,
                      save_path=os.path.join(sys.path[0], '../examples'),
                      save_name=f"{os.path.basename(__file__.split('.')[0])}."
-                               f"{self.__class__.__name__}."
-                               f"{inspect.currentframe().f_code.co_name}"
-                     )
+                     f"{self.__class__.__name__}."
+                     f"{inspect.currentframe().f_code.co_name}")
 
     def test_group_and_series(self):
         data = np.array([[], []], dtype=float)
@@ -97,9 +94,8 @@ class TestScatter(unittest.TestCase):
                      series=series,
                      save_path=os.path.join(sys.path[0], '../examples'),
                      save_name=f"{os.path.basename(__file__.split('.')[0])}."
-                               f"{self.__class__.__name__}."
-                               f"{inspect.currentframe().f_code.co_name}"
-                     )
+                     f"{self.__class__.__name__}."
+                     f"{inspect.currentframe().f_code.co_name}")
 
     def test_group_and_series_fix_marker(self):
         data = np.array([[], []], dtype=float)
@@ -119,9 +115,8 @@ class TestScatter(unittest.TestCase):
                      fix_marker=True,
                      save_path=os.path.join(sys.path[0], '../examples'),
                      save_name=f"{os.path.basename(__file__.split('.')[0])}."
-                               f"{self.__class__.__name__}."
-                               f"{inspect.currentframe().f_code.co_name}"
-                     )
+                     f"{self.__class__.__name__}."
+                     f"{inspect.currentframe().f_code.co_name}")
 
     def test_group_names(self):
         data = np.array([[], []], dtype=float)
@@ -144,9 +139,8 @@ class TestScatter(unittest.TestCase):
                      series=series,
                      save_path=os.path.join(sys.path[0], '../examples'),
                      save_name=f"{os.path.basename(__file__.split('.')[0])}."
-                               f"{self.__class__.__name__}."
-                               f"{inspect.currentframe().f_code.co_name}"
-                     )
+                     f"{self.__class__.__name__}."
+                     f"{inspect.currentframe().f_code.co_name}")
 
     def test_series_names(self):
         data = np.array([[], []], dtype=float)
@@ -168,9 +162,8 @@ class TestScatter(unittest.TestCase):
                      series_names=series_names,
                      save_path=os.path.join(sys.path[0], '../examples'),
                      save_name=f"{os.path.basename(__file__.split('.')[0])}."
-                               f"{self.__class__.__name__}."
-                               f"{inspect.currentframe().f_code.co_name}"
-                     )
+                     f"{self.__class__.__name__}."
+                     f"{inspect.currentframe().f_code.co_name}")
 
     def test_series_names_fix_marker(self):
         data = np.array([[], []], dtype=float)
@@ -193,9 +186,8 @@ class TestScatter(unittest.TestCase):
                      fix_marker=True,
                      save_path=os.path.join(sys.path[0], '../examples'),
                      save_name=f"{os.path.basename(__file__.split('.')[0])}."
-                               f"{self.__class__.__name__}."
-                               f"{inspect.currentframe().f_code.co_name}"
-                     )
+                     f"{self.__class__.__name__}."
+                     f"{inspect.currentframe().f_code.co_name}")
 
     def test_group_names_and_series_names(self):
         data = np.array([[], []], dtype=float)
@@ -221,9 +213,8 @@ class TestScatter(unittest.TestCase):
                      series_names=series_names,
                      save_path=os.path.join(sys.path[0], '../examples'),
                      save_name=f"{os.path.basename(__file__.split('.')[0])}."
-                               f"{self.__class__.__name__}."
-                               f"{inspect.currentframe().f_code.co_name}"
-                     )
+                     f"{self.__class__.__name__}."
+                     f"{inspect.currentframe().f_code.co_name}")
 
 
 if __name__ == "__main__":

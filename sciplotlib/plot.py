@@ -139,13 +139,14 @@ def scatter(data,
         for j in np.unique(group):
             for i in np.unique(series):
                 idx = (series == i) & (group == j)
-                handle = plt.scatter(data[0][idx],
-                                     data[1][idx],
-                                     s=s,
-                                     c=color[i],
-                                     marker=marker[0] if fix_marker else marker[j],
-                                     alpha=alpha,
-                                     linewidths=linewidths)
+                handle = plt.scatter(
+                    data[0][idx],
+                    data[1][idx],
+                    s=s,
+                    c=color[i],
+                    marker=marker[0] if fix_marker else marker[j],
+                    alpha=alpha,
+                    linewidths=linewidths)
                 handles_series.append(handle)
                 if i == 0:
                     handles_group.append(handle)
@@ -167,16 +168,16 @@ def scatter(data,
         plt.gca().add_artist(legend_group)
     if series_names is not None:
         legend_series = plt.legend(handles=handles_series,
-                                  labels=series_names,
-                                  loc=loc_series,
-                                  fontsize=legend_fontsize,
-                                  labelspacing=labelspacing,
-                                  handletextpad=handletextpad,
-                                  handlelength=handlelength,
-                                  borderpad=borderpad,
-                                  markerscale=markerscale,
-                                  fancybox=fancybox,
-                                  framealpha=framealpha)
+                                   labels=series_names,
+                                   loc=loc_series,
+                                   fontsize=legend_fontsize,
+                                   labelspacing=labelspacing,
+                                   handletextpad=handletextpad,
+                                   handlelength=handlelength,
+                                   borderpad=borderpad,
+                                   markerscale=markerscale,
+                                   fancybox=fancybox,
+                                   framealpha=framealpha)
         for lh in legend_series.legendHandles:
             lh.set_alpha(alpha)
         plt.gca().add_artist(legend_series)
