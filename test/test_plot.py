@@ -12,21 +12,34 @@ class TestScatter(unittest.TestCase):
 
     def test_group_is_none_but_series_is_not_none(self):
         with self.assertRaises(Exception) as context:
-            plot.scatter([], series=[])
+            plot.scatter(np.array([], dtype=int), series=np.array([], dtype=int))
         self.assertEqual(str(context.exception),
                          "group must not None when series is not None.")
 
     def test_group_and_group_names_mismatch(self):
         with self.assertRaises(Exception) as context:
-            plot.scatter([], group=[], group_names=["1"])
+            plot.scatter(np.array([], dtype=int), group=np.array([], dtype=int), group_names=["1"])
         self.assertEqual(str(context.exception),
                          "The length of group_names does not match group.")
 
     def test_series_and_series_names_mismatch(self):
         with self.assertRaises(Exception) as context:
-            plot.scatter([], group=[], series=[], series_names=["1"])
+            plot.scatter(np.array([], dtype=int), group=np.array([], dtype=int),
+                         series=np.array([], dtype=int), series_names=["1"])
         self.assertEqual(str(context.exception),
                          "The length of series_names does not match series.")
+
+    def test_group_not_int(self):
+        with self.assertRaises(Exception) as context:
+            plot.scatter(np.array([], dtype=int), group=np.array([1], dtype=float))
+        self.assertEqual(str(context.exception),
+                         "group must be int64 numpy array.")
+
+    def test_series_not_int(self):
+        with self.assertRaises(Exception) as context:
+            plot.scatter(np.array([], dtype=int), group=np.array([1], dtype=int), series=np.array([1], dtype=float))
+        self.assertEqual(str(context.exception),
+                         "series must be int64 numpy array.")
 
     def test_group_is_none(self):
         data = np.random.randn(2, 100)

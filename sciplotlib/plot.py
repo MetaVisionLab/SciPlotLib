@@ -67,7 +67,7 @@ def scatter(data,
     """
     A scatter plot of data with varying marker size and/or color.
     :param data: A numpy array of dimension [2, N].
-    :param group: An N-dimensional numpy array indicating that
+    :param group: An N-dimensional int numpy array indicating that
     data[i] belongs to the group[i]th group.
     :param group_names: If provided, it will appear on the legend.
     :param series: Series, group must not None when series is not None.
@@ -104,6 +104,10 @@ def scatter(data,
         marker = marker_map
     assert series is None or group is not None, \
         "group must not None when series is not None."
+    assert group is None or group.dtype == "int64", \
+        "group must be int64 numpy array."
+    assert series is None or series.dtype == "int64", \
+        "series must be int64 numpy array."
     if group is not None and group_names is not None:
         assert len(group_names) == len(np.unique(group)), \
             "The length of group_names does not match group."
