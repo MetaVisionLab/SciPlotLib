@@ -19,9 +19,7 @@ python setup.py install
 If you don't have the Times-New-Roman font in your system, you need to install it manually. For example, in Ubuntu 18.04, you can use the following command:
 
 ```shell script
-curl https://dl.freefontsfamily.com/download/Times-New-Roman-Font/ -o Times-New-roman.zip
-unzip Times-New-roman.zip
-cp "Times New Roman"/* /path/to/your/python/site-packages/matplotlib/mpl-data/fonts/ttf/
+cp ./fonts/* /path/to/your/python/site-packages/matplotlib/mpl-data/fonts/ttf/
 ```
 
 And then, remove the cache of matplotlib.
@@ -40,7 +38,7 @@ Due to the lack of compatibility of the SVG format, we do not generate SVG direc
 
 ## Color Map
 
-By default, we use the following color map:
+By default, we use the following color map for scatter plot:
 
 |  R  |  G  |  B  |    H     |
 |:---:|:---:|:---:|:--------:|

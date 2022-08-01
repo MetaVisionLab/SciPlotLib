@@ -12,32 +12,40 @@ class TestScatter(unittest.TestCase):
 
     def test_group_is_none_but_series_is_not_none(self):
         with self.assertRaises(Exception) as context:
-            plot.scatter(np.array([], dtype=int), series=np.array([], dtype=int))
+            plot.scatter(np.array([], dtype=int),
+                         series=np.array([], dtype=int))
         self.assertEqual(str(context.exception),
                          "group must not None when series is not None.")
 
     def test_group_and_group_names_mismatch(self):
         with self.assertRaises(Exception) as context:
-            plot.scatter(np.array([], dtype=int), group=np.array([], dtype=int), group_names=["1"])
+            plot.scatter(np.array([], dtype=int),
+                         group=np.array([], dtype=int),
+                         group_names=["1"])
         self.assertEqual(str(context.exception),
                          "The length of group_names does not match group.")
 
     def test_series_and_series_names_mismatch(self):
         with self.assertRaises(Exception) as context:
-            plot.scatter(np.array([], dtype=int), group=np.array([], dtype=int),
-                         series=np.array([], dtype=int), series_names=["1"])
+            plot.scatter(np.array([], dtype=int),
+                         group=np.array([], dtype=int),
+                         series=np.array([], dtype=int),
+                         series_names=["1"])
         self.assertEqual(str(context.exception),
                          "The length of series_names does not match series.")
 
     def test_group_not_int(self):
         with self.assertRaises(Exception) as context:
-            plot.scatter(np.array([], dtype=int), group=np.array([1], dtype=float))
+            plot.scatter(np.array([], dtype=int),
+                         group=np.array([1], dtype=float))
         self.assertEqual(str(context.exception),
                          "group must be int64 numpy array.")
 
     def test_series_not_int(self):
         with self.assertRaises(Exception) as context:
-            plot.scatter(np.array([], dtype=int), group=np.array([1], dtype=int), series=np.array([1], dtype=float))
+            plot.scatter(np.array([], dtype=int),
+                         group=np.array([1], dtype=int),
+                         series=np.array([1], dtype=float))
         self.assertEqual(str(context.exception),
                          "series must be int64 numpy array.")
 
@@ -226,8 +234,85 @@ class TestScatter(unittest.TestCase):
                      series_names=series_names,
                      save_path=os.path.join(sys.path[0], '../examples'),
                      save_name=f"{os.path.basename(__file__.split('.')[0])}."
-                     f"{self.__class__.__name__}."
-                     f"{inspect.currentframe().f_code.co_name}")
+                               f"{self.__class__.__name__}."
+                               f"{inspect.currentframe().f_code.co_name}")
+
+
+class TestHeatMap(unittest.TestCase):
+    data = np.array([[0.8, 2.4, 2.5, 3.9, 0.0, 4.0, 0.0],
+                     [2.4, 0.0, 4.0, 1.0, 2.7, 0.0, 0.0],
+                     [1.1, 2.4, 0.8, 4.3, 1.9, 4.4, 0.0],
+                     [0.6, 0.0, 0.3, 0.0, 3.1, 0.0, 0.0],
+                     [0.7, 1.7, 0.6, 2.6, 2.2, 6.2, 0.0],
+                     [1.3, 1.2, 0.0, 0.0, 0.0, 3.2, 5.1],
+                     [0.1, 2.0, 0.0, 1.4, 0.0, 1.9, 6.3]])
+    x_labels = ["cucumber", "tomato", "lettuce", "asparagus",
+                "potato", "wheat", "barley"]
+    y_labels = ["Farmer Joe", "Upland Bros.", "Smith Gardening",
+                "Agrifun", "Organiculture", "BioGoods Ltd.", "Cornylee Corp."]
+
+    def test_default(self):
+        plot.heatmap(self.data,
+                     save_path=os.path.join(sys.path[0], '../examples'),
+                     save_name=f"{os.path.basename(__file__.split('.')[0])}."
+                               f"{self.__class__.__name__}."
+                               f"{inspect.currentframe().f_code.co_name}")
+
+    def test_grid_color_w(self):
+        plot.heatmap(self.data,
+                     remove_axis=False,
+                     grid=True,
+                     grid_color="w",
+                     save_path=os.path.join(sys.path[0], '../examples'),
+                     save_name=f"{os.path.basename(__file__.split('.')[0])}."
+                               f"{self.__class__.__name__}."
+                               f"{inspect.currentframe().f_code.co_name}")
+
+    def test_grid_color_black(self):
+        plot.heatmap(self.data,
+                     remove_axis=False,
+                     grid=True,
+                     grid_color="black",
+                     spines=True,
+                     save_path=os.path.join(sys.path[0], '../examples'),
+                     save_name=f"{os.path.basename(__file__.split('.')[0])}."
+                               f"{self.__class__.__name__}."
+                               f"{inspect.currentframe().f_code.co_name}")
+
+    def test_labels(self):
+        plot.heatmap(self.data,
+                     x_labels=self.x_labels,
+                     y_labels=self.y_labels,
+                     remove_axis=False,
+                     grid=True,
+                     grid_color="black",
+                     spines=True,
+                     save_path=os.path.join(sys.path[0], '../examples'),
+                     save_name=f"{os.path.basename(__file__.split('.')[0])}."
+                               f"{self.__class__.__name__}."
+                               f"{inspect.currentframe().f_code.co_name}")
+
+    def test_color_bar(self):
+        plot.heatmap(self.data,
+                     x_labels=self.x_labels,
+                     y_labels=self.y_labels,
+                     color_bar=True,
+                     remove_axis=False,
+                     grid=True,
+                     grid_color="black",
+                     spines=True,
+                     save_path=os.path.join(sys.path[0], '../examples'),
+                     save_name=f"{os.path.basename(__file__.split('.')[0])}."
+                               f"{self.__class__.__name__}."
+                               f"{inspect.currentframe().f_code.co_name}")
+
+    def test_val_fmt(self):
+        plot.heatmap(self.data,
+                     val_fmt="{x:.2f} t",
+                     save_path=os.path.join(sys.path[0], '../examples'),
+                     save_name=f"{os.path.basename(__file__.split('.')[0])}."
+                               f"{self.__class__.__name__}."
+                               f"{inspect.currentframe().f_code.co_name}")
 
 
 if __name__ == "__main__":

@@ -3,6 +3,8 @@ import os
 import numpy as np
 from matplotlib import pyplot as plt
 
+__all__ = ["scatter"]
+
 color_map = [
     "#377EB8",
     "#4DAF4A",
@@ -116,7 +118,7 @@ def scatter(data,
             "The length of series_names does not match series."
 
     plt.figure(figsize=figsize)
-    plt.rcParams["font.sans-serif"] = "Times New Roman"
+    plt.rcParams["font.family"] = "Times New Roman"
     handles_group = []
     handles_series = []
     if group is None and series is None:
