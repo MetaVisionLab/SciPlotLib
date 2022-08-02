@@ -314,6 +314,26 @@ class TestHeatMap(unittest.TestCase):
                                f"{self.__class__.__name__}."
                                f"{inspect.currentframe().f_code.co_name}")
 
+    def test_val_fontsize(self):
+        plot.heatmap(self.data,
+                     val_fontsize=20,
+                     save_path=os.path.join(sys.path[0], '../examples'),
+                     save_name=f"{os.path.basename(__file__.split('.')[0])}."
+                               f"{self.__class__.__name__}."
+                               f"{inspect.currentframe().f_code.co_name}")
+
+    def test_axis_fontsize(self):
+        plot.heatmap(self.data,
+                     axis_fontsize=20,
+                     x_labels=self.x_labels,
+                     y_labels=self.y_labels,
+                     color_bar=True,
+                     remove_axis=False,
+                     save_path=os.path.join(sys.path[0], '../examples'),
+                     save_name=f"{os.path.basename(__file__.split('.')[0])}."
+                               f"{self.__class__.__name__}."
+                               f"{inspect.currentframe().f_code.co_name}")
+
 
 if __name__ == "__main__":
     unittest.main()

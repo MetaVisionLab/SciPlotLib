@@ -24,7 +24,8 @@ def heatmap(data,
             save_name="heatmap",
             color=None,
             figsize=(6, 4),
-            axis_fontsize=10):
+            axis_fontsize=10,
+            val_fontsize=10):
     """
     Create a heatmap from a numpy array and two lists of labels.
     :param data: A numpy array of dimension [2, N].
@@ -58,6 +59,7 @@ def heatmap(data,
         color_bar = plt.gca().figure.colorbar(im, ax=plt.gca())
         color_bar.ax.set_ylabel(color_bar_label, rotation=-90, va="bottom")
         color_bar.ax.spines[:].set_linewidth(grid_linewidth)
+        color_bar.ax.tick_params(labelsize=axis_fontsize)
 
     if isinstance(val_fmt, str):
         val_fmt = matplotlib.ticker.StrMethodFormatter(val_fmt)
@@ -68,7 +70,8 @@ def heatmap(data,
                      val_fmt(data[i, j], None),
                      ha="center",
                      va="center",
-                     color="black")
+                     color="black",
+                     fontsize=val_fontsize)
 
     # Turn spines off
     plt.gca().spines[:].set_visible(spines)
