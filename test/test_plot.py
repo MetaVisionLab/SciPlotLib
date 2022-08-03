@@ -260,7 +260,8 @@ class TestHeatMap(unittest.TestCase):
 
     def test_grid_color_w(self):
         plot.heatmap(self.data,
-                     remove_axis=False,
+                     axis=True,
+                     ticks=False,
                      grid=True,
                      grid_color="w",
                      save_path=os.path.join(sys.path[0], '../examples'),
@@ -270,10 +271,11 @@ class TestHeatMap(unittest.TestCase):
 
     def test_grid_color_black(self):
         plot.heatmap(self.data,
-                     remove_axis=False,
+                     axis=True,
+                     spines=True,
+                     ticks=False,
                      grid=True,
                      grid_color="black",
-                     spines=True,
                      save_path=os.path.join(sys.path[0], '../examples'),
                      save_name=f"{os.path.basename(__file__.split('.')[0])}."
                                f"{self.__class__.__name__}."
@@ -281,9 +283,9 @@ class TestHeatMap(unittest.TestCase):
 
     def test_labels(self):
         plot.heatmap(self.data,
+                     axis=True,
                      x_labels=self.x_labels,
                      y_labels=self.y_labels,
-                     remove_axis=False,
                      grid=True,
                      grid_color="black",
                      spines=True,
@@ -294,10 +296,10 @@ class TestHeatMap(unittest.TestCase):
 
     def test_color_bar(self):
         plot.heatmap(self.data,
+                     axis=True,
                      x_labels=self.x_labels,
                      y_labels=self.y_labels,
                      color_bar=True,
-                     remove_axis=False,
                      grid=True,
                      grid_color="black",
                      spines=True,
@@ -316,7 +318,7 @@ class TestHeatMap(unittest.TestCase):
 
     def test_val_fontsize(self):
         plot.heatmap(self.data,
-                     val_fontsize=20,
+                     val_fontsize=15,
                      save_path=os.path.join(sys.path[0], '../examples'),
                      save_name=f"{os.path.basename(__file__.split('.')[0])}."
                                f"{self.__class__.__name__}."
@@ -325,10 +327,10 @@ class TestHeatMap(unittest.TestCase):
     def test_axis_fontsize(self):
         plot.heatmap(self.data,
                      axis_fontsize=20,
+                     axis=True,
                      x_labels=self.x_labels,
                      y_labels=self.y_labels,
                      color_bar=True,
-                     remove_axis=False,
                      save_path=os.path.join(sys.path[0], '../examples'),
                      save_name=f"{os.path.basename(__file__.split('.')[0])}."
                                f"{self.__class__.__name__}."

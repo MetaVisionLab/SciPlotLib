@@ -8,15 +8,16 @@ __all__ = ["heatmap"]
 
 
 def heatmap(data,
-            remove_axis=True,
-            x_labels="",
-            y_labels="",
+            axis=False,
+            spines=False,
+            ticks=True,
+            x_labels=None,
+            y_labels=None,
             color_bar=False,
             color_bar_label="",
             vmin=None,
             vmax=None,
             val_fmt="{x:.2f}",
-            spines=False,
             grid=False,
             grid_color="black",
             grid_linewidth=2,
@@ -29,13 +30,14 @@ def heatmap(data,
     """
     Create a heatmap from a numpy array and two lists of labels.
     :param data: A numpy array of dimension [2, N].
-    :param remove_axis: This will remove the axis and bounding box.
+    :param axis: This will remove the axis and bounding box.
+    :param spines: plot spines or not.
+    :param ticks: Where show ticks or not.
     :param x_labels: x labels
     :param y_labels: y labels
     :param grid_linewidth: line width of grid
     :param grid_color: color of grid
     :param grid: plot grid or not
-    :param spines: plot spines or not
     :param val_fmt: number format
     :param vmax: data range that the colormap covers
     :param vmin: data range that the colormap covers
@@ -46,6 +48,7 @@ def heatmap(data,
     :param color: A hexadecimal array of colors.
     :param figsize: Width, height in inches.
     :param axis_fontsize: Axis fontsize used when remove_axis is False.
+    :param val_fontsize: The fontsize of the padding value.
     :return: None
     """
     if color is None:
@@ -73,8 +76,16 @@ def heatmap(data,
                      color="black",
                      fontsize=val_fontsize)
 
-    # Turn spines off
+    # Spines
     plt.gca().spines[:].set_visible(spines)
+
+    if ticks is False:
+        plt.gca().tick_params(axis="both",
+                              which="major",
+                              left=False,
+                              bottom=False,
+                              labelleft=False,
+                              labelbottom=False)
 
     pad_inches = 0
 
@@ -92,17 +103,19 @@ def heatmap(data,
 
     plt.tight_layout()
 
-    if remove_axis:
-        plt.axis('off')
-    else:
+    if axis:
         plt.xticks(fontsize=axis_fontsize)
         plt.yticks(fontsize=axis_fontsize)
-        plt.gca().set_xticks(np.arange(len(x_labels)), labels=x_labels)
-        plt.gca().set_yticks(np.arange(len(y_labels)), labels=y_labels)
+        if x_labels is not None:
+            plt.gca().set_xticks(np.arange(len(x_labels)), labels=x_labels)
+        if y_labels is not None:
+            plt.gca().set_yticks(np.arange(len(y_labels)), labels=y_labels)
         plt.setp(plt.gca().get_xticklabels(),
                  rotation=45,
                  ha="right",
                  rotation_mode="anchor")
+    else:
+        plt.axis('off')
 
     os.makedirs(save_path, exist_ok=True)
     plt.savefig(os.path.join(save_path, f"{save_name}.pdf"),

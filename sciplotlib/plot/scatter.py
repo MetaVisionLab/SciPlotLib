@@ -63,7 +63,9 @@ def scatter(data,
             loc="lower right",
             loc_series="upper left",
             figsize=(6, 4),
-            remove_axis=True,
+            axis=True,
+            spines=True,
+            ticks=False,
             legend_fontsize=15,
             axis_fontsize=10):
     """
@@ -92,10 +94,9 @@ def scatter(data,
     :param loc: loc for group legend.
     :param loc_series: loc for series legend.
     :param figsize: Width, height in inches.
-    :param remove_axis: This will remove the axis and bounding box. The
-    image cannot be centered without removing the bounding box. If you
-    need a bounding box, you can insert it yourself, e.g. place
-    includegraphics command into frame command for LaTex.
+    :param axis: This will remove the axis and bounding box.
+    :param spines: plot spines or not.
+    :param ticks: Where show ticks or not.
     :param legend_fontsize: Legend fontsize used when needed.
     :param axis_fontsize: Axis fontsize used when remove_axis is False.
     :return: None
@@ -187,11 +188,23 @@ def scatter(data,
         for lh in legend_series.legendHandles:
             lh.set_alpha(alpha)
         plt.gca().add_artist(legend_series)
-    if remove_axis:
-        plt.axis('off')
-    else:
+
+    # Spines
+    plt.gca().spines[:].set_visible(spines)
+
+    if ticks is False:
+        plt.gca().tick_params(axis="both",
+                              which="major",
+                              left=False,
+                              bottom=False,
+                              labelleft=False,
+                              labelbottom=False)
+
+    if axis:
         plt.xticks(fontsize=axis_fontsize)
         plt.yticks(fontsize=axis_fontsize)
+    else:
+        plt.axis('off')
     os.makedirs(save_path, exist_ok=True)
     plt.savefig(os.path.join(save_path, f"{save_name}.pdf"),
                 bbox_inches="tight",
