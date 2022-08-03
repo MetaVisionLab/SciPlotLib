@@ -80,6 +80,8 @@ def heatmap(data,
     plt.gca().spines[:].set_visible(spines)
 
     if ticks is False:
+        plt.gca().set_xticks(ticks=[])
+        plt.gca().set_yticks(ticks=[])
         plt.gca().tick_params(axis="both",
                               which="major",
                               left=False,
